@@ -11,9 +11,7 @@ function Home({ listings }) {
         <Banner />
 
         <div className='home__section'>
-            <ul className="cards">
-                {listings.map((listing)=> (<Card key = {listing.id} {...listing} />))}
-            </ul>
+            {listings.map((listing)=> (<Card key = {listing.id} {...listing} />))}
         </div>
 
     </div>

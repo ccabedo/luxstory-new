@@ -2,8 +2,10 @@ import React from 'react'
 import './SearchResult.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
+import { Link } from 'react-router-dom';
 
 function SearchResult({ 
+    id,
     image,
     location,
     title,
@@ -31,6 +33,7 @@ function SearchResult({
                 <div className='searchResult__price'>
                     <h2>{price}</h2>
                     <p>TOTAL</p>
+                    <Link to={`/listings/${id}`}>More Deatails</Link>
                 </div>
             </div>
         </div>

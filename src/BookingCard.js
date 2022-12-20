@@ -8,14 +8,17 @@ function BookingCard( booking ) {
     return (
     <div className="booking__card">
       <div className="searchResult">
-        <img src={booking.image} alt="" />
+        <img src={booking.listing.image} alt="" />
         <div className="searchResult__info">
           <div className="searchResult__infoTop">
-            <p>{booking.location}</p>
-            <h3>{booking.title}</h3>
+            <p>{booking.listing.city} • {booking.listing.bedroom}B / {booking.listing.bathroom}B</p>
+            <h3>{booking.listing.title}</h3>
+            <h5>{booking.listing.amenities}</h5>
             <p>_____</p>
-            <p>{booking.description}</p>
+            <p>{booking.listing.description}</p>
           </div>
+          <h4>Reviews</h4>
+          <h5>{booking.review}</h5>
           <div className="searchResult__infoBottom">
             <h4>Leave a Review</h4>
             <ReviewForm booking={booking} />

@@ -27,7 +27,6 @@ function Header({ user, bookings, handleLogOut, onSearch }) {
 
 
   function handleSubmit(e) {
-    debugger
     e.preventDefault();
     onSearch(search);
   }

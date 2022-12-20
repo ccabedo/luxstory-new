@@ -10,7 +10,7 @@ function FeaturedList({ bookings }) {
 
   return (
     <div>
-        <h1> Your Listings </h1>
+        <h1>Your Bookings</h1>
         {bookingComponent}
     </div>
   )

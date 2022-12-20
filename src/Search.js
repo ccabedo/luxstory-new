@@ -41,7 +41,7 @@ function Search() {
             type="number"
         />
         <Button
-        onClick={() => history.push('/search')}>Search LuxStory</Button>
+        onClick={() => history.push('/listings')}>Search LuxStory</Button>
 
     </div>
   )

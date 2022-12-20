@@ -40,3 +40,8 @@
     width: 15vw;
     margin-right: 80px;
 }
+
+.header__avatar:hover {
+    opacity: 0.4;
+    background-color: #da8ee7;
+}

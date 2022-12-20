@@ -5,16 +5,21 @@ import LanguageIcon from '@mui/icons-material/Language';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
+
 
 
 
 function Header() {
+  const history = useHistory();
+
   return (
     <div className='header'>
       <Link to='/'>
           <img
               className="header__icon"
-              src="http://static.dezeen.com/uploads/2014/07/Airbnb-rebrand-by-DesignStudio_dezeen_468_8.jpg"
+              src="https://www.kadencewp.com/wp-content/uploads/2020/10/alogo-2.png"
               alt=""
           />
       </Link>
@@ -28,7 +33,7 @@ function Header() {
             <p>Become a host</p>
             <LanguageIcon />
             <ExpandMoreIcon />
-            <Avatar />
+            <Avatar className="header__avatar" onClick={() => {history.push('/login')}}/>
         </div>
     </div>
   )

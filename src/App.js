@@ -3,11 +3,37 @@ import './App.css';
 import Home from './Home';
 import Header from './Header';
 import Footer from './Footer';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SearchPage from './SearchPage';
+import Login from './Login';
+
 
 function App() {
   const [listings, setListings] = useState([])
+  const [user, setUser] = useState(null);
+  console.log("user", user);
+
+  // const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("/user")
+    .then((r) => {
+      if (r.ok) {r.json()
+        .then((currentUser) => setUser(currentUser));
+      }
+    });
+  },[]);
+
+  // function handleLogOut(){
+  //   fetch("/logout", {
+  //     method: "DELETE"
+  //   }).then ((r) => {
+  //     if (r.ok) {
+  //       setUser(null);
+  //       navigate("/login");
+  //     }
+  //   });
+  // }
 
   useEffect(() => {
     fetch("/listings")
@@ -22,10 +48,12 @@ function App() {
       <Router>
         <Header />
           <Switch>
-            <Route path="/search">
+            <Route path="/listings">
               <SearchPage listings = {listings} />
             </Route>
-
+            <Route path="/login">
+              <Login user={user} setUser={setUser}/>
+            </Route>
             <Route path="/">
               <Home listings = {listings} />
             </Route>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import './Header.css';
 import SearchIcon from '@mui/icons-material/Search';
 // import LanguageIcon from '@mui/icons-material/Language';
@@ -12,7 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 
 
-function Header({ user, bookings, handleLogOut }) {
+function Header({ user, bookings, handleLogOut, onSearch }) {
+  const [search, setSearch] = useState("");
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -23,6 +25,12 @@ function Header({ user, bookings, handleLogOut }) {
     setAnchorEl(null);
   };
 
+
+  function handleSubmit(e) {
+    debugger
+    e.preventDefault();
+    onSearch(search);
+  }
 
   
 
@@ -37,8 +45,19 @@ function Header({ user, bookings, handleLogOut }) {
       </Link>
 
         <div className="header__center">
-            <input type="text" />
-            <SearchIcon />
+          <form className="searchbar" onSubmit={handleSubmit}>
+            <input 
+            type="text"
+            id="search"
+            placeholder="search by title..."
+            onChange={(e) => setSearch(e.target.value)} 
+            />
+            <Button 
+            type="submit"
+            variant="lined">
+              <SearchIcon />
+            </Button>
+          </form>
         </div>
 
         <div className='header__right'>

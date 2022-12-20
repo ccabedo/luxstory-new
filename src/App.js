@@ -14,6 +14,7 @@ function App() {
   const [listings, setListings] = useState([])
   const [bookings, setBookings] = useState([])
   const [user, setUser] = useState(null);
+  const [search, setSearch]= useState("");
   console.log("user", user);
 
 
@@ -49,14 +50,18 @@ function App() {
     .then(data => setBookings(data))
   }, [])
 
+  let filtered = listings.filter((listing) =>
+  listing.title.toLowerCase().includes(search.toLowerCase())
+  );
+
 
   return (
     <div className="app">
 
       <Router>
-        <Header user={user} bookings={bookings} handleLogOut={handleLogOut}/>
+        <Header onSearch={setSearch} user={user} bookings={bookings} handleLogOut={handleLogOut}/>
           <Switch>
-            <Route path="/listings/:listingId">
+            <Route path="/listings/:listingsId">
               <SingleCard listings={listings} />
             </Route>
             <Route path="/listings">
@@ -72,7 +77,7 @@ function App() {
               <Login user={user} setUser={setUser}/>
             </Route>
             <Route path="/">
-              <Home listings = {listings} />
+              <Home listings = {filtered} />
             </Route>
           </Switch>
         <Footer />

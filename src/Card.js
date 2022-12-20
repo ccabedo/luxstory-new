@@ -1,7 +1,9 @@
 import React from 'react';
-import './Card.css'
+import './Card.css';
+import { Link} from 'react-router-dom';
+import FeaturedList from './FeaturedList';
 
-function Card({ image, title, description, price }) {
+function Card({ id, image, title, description, price }) {
   
     return (
     <div className='card'>
@@ -10,6 +12,7 @@ function Card({ image, title, description, price }) {
             <h2>{title}</h2>
             <h4>{description}</h4>
             <h3>{price}</h3>
+            <Link to={`/listings/${id}`}>more info</Link>
         </div>
     </div>
   )

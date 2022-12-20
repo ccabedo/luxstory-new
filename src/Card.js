@@ -2,7 +2,7 @@ import React from 'react';
 import './Card.css';
 import { Link} from 'react-router-dom';
 import Button from '@mui/material/Button';
-import FeaturedList from './FeaturedList';
+// import FeaturedList from './FeaturedList';
 
 function Card({ id, image, title, description, price }) {
   

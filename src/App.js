@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SearchPage from './SearchPage';
 import Login from './Login';
 import FeaturedList from "./FeaturedList";
+import SingleCard from "./SingleCard";
 
 
 function App() {
@@ -55,6 +56,9 @@ function App() {
       <Router>
         <Header user={user} bookings={bookings} handleLogOut={handleLogOut}/>
           <Switch>
+            <Route path="/listings/:listingId">
+              <SingleCard listings={listings} />
+            </Route>
             <Route path="/listings">
               <SearchPage listings = {listings} />
             </Route>

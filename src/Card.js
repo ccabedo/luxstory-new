@@ -1,6 +1,7 @@
 import React from 'react';
 import './Card.css';
 import { Link} from 'react-router-dom';
+import Button from '@mui/material/Button';
 import FeaturedList from './FeaturedList';
 
 function Card({ id, image, title, description, price }) {
@@ -12,7 +13,7 @@ function Card({ id, image, title, description, price }) {
             <h2>{title}</h2>
             <h4>{description}</h4>
             <h3>{price}</h3>
-            <Link to={`/listings/${id}`}>more info</Link>
+            <Button variant="outlined"><Link to={`/listings/${id}`}>Book</Link></Button>
         </div>
     </div>
   )

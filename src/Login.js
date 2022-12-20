@@ -15,13 +15,17 @@ function Login({ setUser }) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ username, password }),
+          body: JSON.stringify({ 
+            username: loginUser, 
+            password: loginPassword }),
         }).then((r) => {
           if (r.ok) {
             r.json().then((user) => setUser(user));
           }
         });
       }
+
+      console.log(loginUser)
 
       function handleSignUp(e) {
         e.preventDefault();

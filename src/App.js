@@ -53,7 +53,7 @@ function App() {
     <div className="app">
 
       <Router>
-        <Header user={user} handleLogOut={handleLogOut}/>
+        <Header user={user} bookings={bookings} handleLogOut={handleLogOut}/>
           <Switch>
             <Route path="/listings">
               <SearchPage listings = {listings} />

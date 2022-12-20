@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 
 
-function Header({ user, handleLogOut }) {
+function Header({ user, bookings, handleLogOut }) {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -42,7 +42,7 @@ function Header({ user, handleLogOut }) {
         </div>
 
         <div className='header__right'>
-        <div>{user ? (<div><h5>Welcome back, {user.username}</h5></div>) : (<h4 className="header__logo">Luxstory</h4>)}</div>
+        <div>{user ? (<div><h5>Welcome back, {user.username}</h5></div>) : (<h4 className="header__logo">LuxStory</h4>)}</div>
             {/* <LanguageIcon /> */}
       <Button
         id="fade-button"
@@ -68,10 +68,10 @@ function Header({ user, handleLogOut }) {
         <MenuItem><nav><Link to="/" onClick={handleLogOut}>Logout</Link></nav></MenuItem>
       </Menu>
       <Avatar className="header__avatar" onClick={() => {history.push('/login')}}/>
-            <div>
+      <div>
     </div>  
-        </div>
     </div>
+  </div>
   )
 }
 

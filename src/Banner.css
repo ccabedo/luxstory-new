@@ -5,7 +5,8 @@
 }
 
 .banner__info{
-    background-color: black;
+    background-color: darkgray;
+    opacity: 0.9;
     color: white;
     padding-top: 25vh;
     padding-left: 50px;

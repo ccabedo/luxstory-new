@@ -8,17 +8,22 @@ import Rating from "@mui/material/Rating";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-const StyledRating = styled(Rating)({
-  "& .MuiRating-iconFilled": {
-    color: "#ff6d75",
-  },
-  "& .MuiRating-iconHover": {
-    color: "#ff3d47",
-  },
-});
+
+
 
 function ReviewForm({ booking }) {
   const [review, setReview] = useState("");
+  const [rating, setRating] = useState();
+
+  const StyledRating = styled(Rating)({
+    "& .MuiRating-iconFilled": {
+      color: "#ff6d75",
+    },
+    "& .MuiRating-iconHover": {
+      color: "#ff3d47",
+    },
+  });
+  
 
   function onSubmit(e) {
     e.preventDefault();
@@ -27,7 +32,8 @@ function ReviewForm({ booking }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ review: review }),
+      body: JSON.stringify({ 
+        review: review}),
     });
   }
 
@@ -43,14 +49,12 @@ function ReviewForm({ booking }) {
         <Button variant="outlined" type="submit>">
           Add Review
         </Button>
-        <Button variant="outlined" type="submit>">
-          Delete
-        </Button>
+
       </form>
 
-      <Button variant="outlined" type="submit>">
+      {/* <Button variant="outlined" type="submit>">
         Edit
-      </Button>
+      </Button> */}
       <Box
         sx={{
           "& > legend": { mt: 2 },
@@ -61,9 +65,10 @@ function ReviewForm({ booking }) {
           name="customized-color"
           defaultValue={2}
           getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
-          precision={0.5}
+          precision={1}
           icon={<FavoriteIcon fontSize="inherit" />}
           emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+          // onSubmit={onSubmit}
         />
       </Box>
     </div>

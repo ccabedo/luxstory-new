@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import BookingCard from './BookingCard';
 import Button from '@mui/material/Button';
 
 
-function SingleCard({  }) {
-
+function SingleCard( ) {
     const [currentListing, setCurrentListing] = useState({});
     let { listingId } = useParams();
 
@@ -18,6 +16,7 @@ function SingleCard({  }) {
       }, [])
 
       console.log(currentListing)
+    
 
   return (
     <div className='single__card'>
@@ -25,22 +24,24 @@ function SingleCard({  }) {
 
         <div className="booking__card">
       <div className="searchResult">
-        {/* <img src=image alt="" /> */}
+        <img src={currentListing.image} alt="" />
         <div className="searchResult__info">
           <div className="searchResult__infoTop">
-            <p>city • B / B</p>
-            <h3>title</h3>
-            <h5>amenities</h5>
+            <p>{currentListing.city} • {currentListing.bedroom}B / {currentListing.bathroom}B</p>
+            <h3>{currentListing.title}</h3>
+            <h5>{currentListing.amenities}</h5>
             <p>_____</p>
-            <p>description</p>
+            <p>{currentListing.description}</p>
           </div>
           <div className="searchResult__infoBottom">
             <h4>Reviews</h4>
           </div>
             <div className="searchResult__price">
-              <h2>price</h2>
+              <h2>{currentListing.price}</h2>
               <p>TOTAL</p>
-              <Link to="/login"><Button variant="outlined">Book</Button></Link>
+              {/* <Link to="/login"> */}
+                <Button variant="outlined">Book</Button>
+                {/* </Link> */}
             </div>
           </div>
         </div>

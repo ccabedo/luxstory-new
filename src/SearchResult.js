@@ -33,7 +33,7 @@ function SearchResult({
                 <div className='searchResult__price'>
                     <h2>{price}</h2>
                     <p>TOTAL</p>
-                    <Link to={`/listings/${id}`}>More Deatails</Link>
+                    <Link to={`/listings/${id}`}>Book Now</Link>
                 </div>
             </div>
         </div>

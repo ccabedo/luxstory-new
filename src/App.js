@@ -54,6 +54,9 @@ function App() {
   listing.title.toLowerCase().includes(search.toLowerCase())
   );
 
+  // const listingComponent = listings.map((listing) => (
+  //   <SingleCard key={listing.id} {...listing} />
+  // ))
 
   return (
     <div className="app">
@@ -61,8 +64,8 @@ function App() {
       <Router>
         <Header onSearch={setSearch} user={user} bookings={bookings} handleLogOut={handleLogOut}/>
           <Switch>
-            <Route path="/listings/:listingsId">
-              <SingleCard listings={filtered} />
+            <Route path="/listings/:listingId">
+              <SingleCard />
             </Route>
             <Route path="/listings">
               <SearchPage listings = {listings} />

@@ -2,11 +2,29 @@ import './SearchResult.css';
 // import StarIcon from "@mui/icons-material/Star";
 import * as React from 'react';
 import ReviewForm from './ReviewForm';
+import { Button } from "@mui/material";
+
 
 function BookingCard( booking ) {
+
+  function handleDelete(){
+    fetch(`/bookings/${booking.id}`, {
+      method: 'DELETE'
+    })
+    .then(res => {
+      if(res.ok){
+        console.log(res)
+      } else {
+        res.json().then(console.log)
+      }
+    })
+  }
    
     return (
     <div className="booking__card">
+        <Button onClick={handleDelete} variant="outlined" type="submit>">
+          Delete
+        </Button>
       <div className="searchResult">
         <img src={booking.listing.image} alt="" />
         <div className="searchResult__info">

@@ -65,7 +65,7 @@ function App() {
         <Header onSearch={setSearch} user={user} bookings={bookings} handleLogOut={handleLogOut}/>
           <Switch>
             <Route path="/listings/:listingId">
-              <SingleCard />
+              <SingleCard user={user} setBookings={setBookings}/>
             </Route>
             <Route path="/listings">
               <SearchPage listings = {listings} />

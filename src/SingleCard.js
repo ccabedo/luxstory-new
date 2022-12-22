@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 
-function SingleCard( ) {
+function SingleCard({ user, setBookings }) {
     const [currentListing, setCurrentListing] = useState({});
     let { listingId } = useParams();
 
@@ -16,6 +16,24 @@ function SingleCard( ) {
       }, [])
 
       console.log(currentListing)
+
+
+      function handleBooking(){
+        fetch("/bookings",{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            // review: review,
+            // rating: rating,
+            user_id: user.id,
+            listing_id: currentListing.id
+          })
+        })
+        .then(res => res.json())
+        .then(data => setBookings(data))
+      }
     
 
   return (
@@ -40,7 +58,7 @@ function SingleCard( ) {
               <h2>{currentListing.price}</h2>
               <p>TOTAL</p>
               {/* <Link to="/login"> */}
-                <Button variant="outlined">Book</Button>
+                <Button onClick={handleBooking} variant="outlined">Book</Button>
                 {/* </Link> */}
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import './App.css';
 import Home from './Home';
 import Header from './Header';
@@ -8,6 +8,7 @@ import SearchPage from './SearchPage';
 import Login from './Login';
 import FeaturedList from "./FeaturedList";
 import SingleCard from "./SingleCard";
+import ErrorRoute from "./ErrorRoute";
 
 
 function App() {
@@ -51,12 +52,8 @@ function App() {
   }, [])
 
   let filtered = listings.filter((listing) =>
-  listing.title.toLowerCase().includes(search.toLowerCase())
+  listing.city.toLowerCase().includes(search.toLowerCase())
   );
-
-  // const listingComponent = listings.map((listing) => (
-  //   <SingleCard key={listing.id} {...listing} />
-  // ))
 
   return (
     <div className="app">
@@ -65,14 +62,11 @@ function App() {
         <Header onSearch={setSearch} user={user} bookings={bookings} handleLogOut={handleLogOut}/>
           <Switch>
             <Route path="/listings/:listingId">
-              <SingleCard user={user} setBookings={setBookings}/>
+              <SingleCard user={user} bookings={bookings} setBookings={setBookings}/>
             </Route>
             <Route path="/listings">
               <SearchPage listings = {listings} />
             </Route>
-            {/* <Route path={`/listings/${listings.id}`}>
-              <FeaturedList listings = {listings} />
-            </Route> */}
             <Route path="/bookings">
               <FeaturedList bookings={bookings}/>
             </Route>
@@ -81,6 +75,9 @@ function App() {
             </Route>
             <Route path="/">
               <Home listings = {filtered} />
+            </Route>
+            <Route path="*">
+              <ErrorRoute />
             </Route>
           </Switch>
         <Footer />

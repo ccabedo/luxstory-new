@@ -29,7 +29,7 @@
 .searchResult__heart {
     direction: absolute;
     top: 20px;
-    right: 40px;
+    right: 80px;
 }
 
 .searchResult__infoTop {
@@ -69,4 +69,9 @@
     position: absolute;
     bottom: 20px;
     right: 30px;
+}
+
+.searchResult__info > h5 {
+    color: gray;
+    word-wrap: break-word;
 }

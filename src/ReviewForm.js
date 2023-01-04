@@ -1,29 +1,19 @@
 import React, { useState } from "react";
-import "./ReviewForm.css";
 import { Button } from "@mui/material";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
-import Rating from "@mui/material/Rating";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-
-
+import TextField from "@mui/material/TextField";
+// import StyledRating from "@mui/material/StyledRating";
+// import { styled } from '@mui/material/styles';
+// import Box from '@mui/material/Box';
+// import Rating from '@mui/material/Rating';
+// import FavoriteIcon from '@mui/icons-material/Favorite';
+// import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+// import Typography from '@mui/material/Typography';
 
 
 function ReviewForm({ booking }) {
+  const [showPicker, setShowPicker] = useState(false);
+  const [chosenEmoji, setChosenEmoji] = useState(null);
   const [review, setReview] = useState("");
-  const [rating, setRating] = useState();
-
-  const StyledRating = styled(Rating)({
-    "& .MuiRating-iconFilled": {
-      color: "#ff6d75",
-    },
-    "& .MuiRating-iconHover": {
-      color: "#ff3d47",
-    },
-  });
-  
 
   function onSubmit(e) {
     e.preventDefault();
@@ -32,45 +22,55 @@ function ReviewForm({ booking }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
-        review: review}),
+      body: JSON.stringify({
+        review: review,
+      }),
     });
   }
+
+  // const onEmojiClick = (event, EmojiClickData) => {
+  //   console.log(EmojiClickData.target.src);
+  //   setChosenEmoji(EmojiClickData.target.src);
+  // };
 
   return (
     <div className="review__form">
       <form onSubmit={onSubmit}>
-        <input
+        {/* {chosenEmoji ? (
+          <p>
+            Your Emoji: <img src={chosenEmoji}></img>
+          </p>
+        ) : (
+          <span>No Emoji</span>
+        )} */}
+        <TextField
+          id="outlined-basic"
+          label="add a review"
+          variant="outlined"
           onChange={(e) => setReview(e.target.value)}
-          type="text"
+          type="textarea"
           name="review"
           placeholder="add a review"
+          value={review && chosenEmoji}
         />
+        {/* <img
+          className="emoji-icon"
+          src="https://icons.getbootstrap.com/assets/icons/emoji-smile.svg"
+          onClick={() => setShowPicker((val) => !val)}
+        /> */}
+
+        {/* {showPicker && (
+          <EmojiPicker
+            pickerStyle={{ width: "50%" }}
+            onEmojiClick={onEmojiClick}
+          />
+        )} */}
+
+        <br></br>
         <Button variant="outlined" type="submit>">
-          Add Review
+          Submit
         </Button>
-
       </form>
-
-      {/* <Button variant="outlined" type="submit>">
-        Edit
-      </Button> */}
-      <Box
-        sx={{
-          "& > legend": { mt: 2 },
-        }}
-      >
-        <Typography component="legend">Rate your experience</Typography>
-        <StyledRating
-          name="customized-color"
-          defaultValue={2}
-          getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
-          precision={1}
-          icon={<FavoriteIcon fontSize="inherit" />}
-          emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-          // onSubmit={onSubmit}
-        />
-      </Box>
     </div>
   );
 }

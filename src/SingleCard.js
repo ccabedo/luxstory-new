@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
-
+import './SingleCard.css';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 function SingleCard({ user, setBookings }) {
+  const [isFavortite, setIsFavorite] = useState(false)
     const [currentListing, setCurrentListing] = useState({});
+  
     let { listingId } = useParams();
 
     console.log(listingId, "from single listing params")
@@ -25,8 +29,6 @@ function SingleCard({ user, setBookings }) {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            // review: review,
-            // rating: rating,
             user_id: user.id,
             listing_id: currentListing.id
           })
@@ -35,36 +37,30 @@ function SingleCard({ user, setBookings }) {
         .then(data => setBookings(data))
       }
     
-
   return (
     <div className='single__card'>
         <h1>Listing</h1>
-
         <div className="booking__card">
       <div className="searchResult">
+      { isFavortite ? <button className='btn' onClick={()=> setIsFavorite(false)}><FavoriteIcon /></button> : <button className='btn-clicked' onClick={() => setIsFavorite(true)}><FavoriteBorderIcon /></button>}
         <img src={currentListing.image} alt="" />
         <div className="searchResult__info">
           <div className="searchResult__infoTop">
             <p>{currentListing.city} • {currentListing.bedroom}B / {currentListing.bathroom}B</p>
             <h3>{currentListing.title}</h3>
-            <h5>{currentListing.amenities}</h5>
             <p>_____</p>
             <p>{currentListing.description}</p>
+            <h5></h5>
           </div>
           <div className="searchResult__infoBottom">
-            <h4>Reviews</h4>
           </div>
             <div className="searchResult__price">
-              <h2>{currentListing.price}</h2>
-              <p>TOTAL</p>
-              {/* <Link to="/login"> */}
+              <h2>${currentListing.price}</h2>
                 <Button onClick={handleBooking} variant="outlined">Book</Button>
-                {/* </Link> */}
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 }

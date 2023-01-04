@@ -1,8 +1,7 @@
 import React from 'react'
 import './SearchResult.css';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 function SearchResult({ 
     id,
@@ -15,7 +14,6 @@ function SearchResult({
   return (
     <div className='searchResult'>
         <img src={image} alt="" />
-        <FavoriteBorderIcon className='searchResult__heart'/>
         <div className='searchResult__info'>
             <div className='searchResult__infoTop'>
                 <p>{location}</p>
@@ -24,16 +22,9 @@ function SearchResult({
                 <p>{description}</p>
             </div>
             <div className='searchResult__infoBottom'>
-                <div className='searchResult__stars'>
-                    <StarIcon className='searchResult__star'/>
-                    <p>
-                        <strong>4.73</strong>
-                    </p>
-                </div>
                 <div className='searchResult__price'>
-                    <h2>{price}</h2>
-                    <p>TOTAL</p>
-                    <Link to={`/listings/${id}`}>Book Now</Link>
+                    <h2>${price}</h2>
+                    <Button variant="outlined" > <Link to={`/listings/${id}`}>Book Now</Link> </Button>
                 </div>
             </div>
         </div>

@@ -1,0 +1,11 @@
+.btn{
+    color: red;
+    border: none;
+    background-color: transparent;
+}
+
+.btn-clicked{
+    border: none;
+    background-color: transparent;
+    color: black;
+}

@@ -31,9 +31,9 @@
     font-weight: 600;
 }
 
-.card__info > h4 {
-    font-size: 14px;
-    font-weight: 300px;
+.card__info > h5 {
+    font-size: 12px;
     margin-top: 8px;
     margin-bottom: 8px;
+    color: gray;
 }
